@@ -1,0 +1,10 @@
+{
+  "extends": [
+    "react-app",
+    "react-app/jest",
+    "standard",
+    "standard-jsx",
+    "standard-react"
+  ],
+  "plugins": ["only-warn"]
+}
