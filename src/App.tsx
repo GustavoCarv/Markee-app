@@ -1,17 +1,19 @@
 import styled, { css } from 'styled-components/macro'
 
+import { SideBar } from 'components/sidebar/sideBar'
 
 function App() {
-  return <Title>Oi</Title>
+  return (
+    <MainContainer>      
+      <SideBar />
+    </MainContainer>
+  )
 }
 
-const Title = styled.h1`
-  ${({ theme }) => css`
-    background: ${theme.colors.primary};
-    font-size: 2rem;
-    color: ${theme.colors.black};
-  `}
+const MainContainer = styled.div`
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
 `
-
 
 export { App }
