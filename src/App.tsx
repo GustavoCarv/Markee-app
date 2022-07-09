@@ -1,10 +1,10 @@
-import styled, { css } from 'styled-components/macro'
+import styled from 'styled-components/macro'
 
 import { SideBar } from 'components/sidebar/sideBar'
 
-function App() {
+function App () {
   return (
-    <MainContainer>      
+    <MainContainer>
       <SideBar />
     </MainContainer>
   )

@@ -21,6 +21,10 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: "DM Sans", sans-serif ;
   }
+
+  button {
+    all: unset;
+  }
 `
 
 export { Root }
