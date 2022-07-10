@@ -7,52 +7,81 @@ function Textarea() {
     <Container>
       <TitleContainer>
         <ActiveFile />
-        <input placeholder='Sem título'/>
+        <input placeholder="Sem título" />
       </TitleContainer>
       <TextContainer placeholder="Insert the text here..." />
+      <MarkdownContainer>Teste</MarkdownContainer>
     </Container>
   )
 }
 
+const containerMargin = '25px'
+const elementsMarginTop = '42px'
+
 const Container = styled.div`
   width: 100%;
+
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  margin-block: ${containerMargin};
 `
 
 const TitleContainer = styled.div`
   display: flex;
   align-items: center;
   margin-left: 24px;
-  margin-top: 24px;
+
   gap: 12px;
 
+  width: 100%;
+
   & input {
+    border: none;
     font-size: 1.125rem;
     font-weight: 500;
     letter-spacing: -1px;
-    line-height: 25px;
+    height: 25px;
+
+    :focus {
+      outline: none;
+    }
   }
 `
 
 const TextContainer = styled.textarea`
   border: none;
-  border-right: 2px rgba(30, 41, 59, 0.12) solid ;
+  border-right: 2px rgba(30, 41, 59, 0.12) solid;
   padding-left: 26px;
-  margin-top: 42px;
+  padding-right: 24px;
+  padding-bottom: 24px;
+  margin-top: ${elementsMarginTop};
   resize: none;
-  width: 100%;
+  width: 50%;
+  height: calc(100vh - (2 * ${containerMargin} + ${elementsMarginTop}));
   box-sizing: border-box;
   outline: none;
   flex-grow: 1;
 
   font-family: Inconsolata, sans-serif;
-  font-size: 1.125rem ;
-  color: rgba(30, 41, 59) ;
+  font-size: 1.125rem;
+  color: rgba(30, 41, 59);
 
   ::placeholder {
-    color: rgba(30, 41, 59, 0.86) ;
+    color: rgba(30, 41, 59, 0.86);
   }
+`
+
+const MarkdownContainer = styled.div`
+  box-sizing: border-box;
+  width: 50%;
+  height: calc(100vh - (2 * ${containerMargin} + ${elementsMarginTop}));
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-bottom: 24px;
+  margin-top: ${elementsMarginTop};
+
+  overflow: scroll;
+  overflow-x: hidden;
 `
 
 export { Textarea }

@@ -1,8 +1,8 @@
-import { useState } from 'react'
+/* import { useState } from 'react' */
 import { File } from './file'
 
-function Files() {
-  const [isActive, SetIsActive] = useState(false)
+function Files () {
+/*   const [isActive, SetIsActive] = useState(false) */
   const testArr = [
     { content: 'conteudo 1', id: 1 },
     { content: 'conteudo 2', id: 2 },

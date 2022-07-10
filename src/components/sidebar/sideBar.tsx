@@ -4,12 +4,12 @@ import MarkeeLogo from '../../assets/logo192.png'
 
 import styled, { css } from 'styled-components/macro'
 
-function SideBar () {
+function SideBar() {
   return (
-    <NavBar>
+    <Aside>
       <LogoContainer>
-        <LogoImage src={MarkeeLogo} alt='Markee Logo' width={40} height={50} />
-        <Title>
+        <LogoImage src={MarkeeLogo} alt="Markee Logo" width={40} height={50} />
+        <Title> 
           markee<span>.</span>
         </Title>
       </LogoContainer>
@@ -18,14 +18,14 @@ function SideBar () {
         <AddFileButton />
         <Files />
       </Container>
-    </NavBar>
+    </Aside>
   )
 }
 
-const NavBar = styled.nav`
+const Aside = styled.aside`
   ${({ theme }) => css`
     background-color: ${theme.colors.black};
-    
+
     height: inherit;
 
     display: flex;

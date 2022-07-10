@@ -1,17 +1,10 @@
-import styled, { css } from 'styled-components/macro'
+import styled from 'styled-components/macro'
 import { ReactComponent as InactiveFile } from '../../../../assets/inactiveFile.svg'
 import { ReactComponent as ActiveFile } from '../../../../assets/activeFile.svg'
+import { FileType } from 'resources/files'
 
-interface FileProps {
-  id: string
-  name: string
-  content: string
-  active: boolean
-  status: 'editing' | 'saving' | 'saved'
-}
-
-function File(props: Partial<FileProps>) {
-  const ButtonContent = () => {
+function File(props: Partial<FileType>) {
+  /*   const ButtonContent = () => {
     switch (props.status) {
       case 'editing':
         return <div>Teste editando</div>
@@ -26,15 +19,31 @@ function File(props: Partial<FileProps>) {
         return <div>Close btn</div>
     }
   }
-
+ */
   return (
     <Container>
       {props.active ? <ActiveFile /> : <InactiveFile />}
       <FileTitle>{props.name}</FileTitle>
-      <Button>{ButtonContent()}</Button>
+      <Button>{/* {ButtonContent()} */}</Button>
+      <RemoveButton> + </RemoveButton>
     </Container>
   )
 }
+
+const Button = styled.button`
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+`
+
+const RemoveButton = styled(Button)`
+  display: none;
+  transform: translateY(-50%) rotate(45deg);
+  font-size: 24px;
+  color: ${({ theme }) => theme.colors.white};
+  z-index: 1  ;
+`
 
 const Container = styled.div`
   cursor: pointer;
@@ -50,8 +59,12 @@ const Container = styled.div`
   padding-left: 10px;
   border-radius: 3.4px;
 
-  :hover {
+  &:hover {
     background-color: rgba(255, 255, 255, 0.05);
+
+    ${RemoveButton} {
+      display: block;
+    }
   }
 `
 
@@ -61,13 +74,6 @@ const FileTitle = styled.a`
   height: 25px;
   display: flex;
   align-items: center;
-`
-
-const Button = styled.button`
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
 `
 
 export { File }
