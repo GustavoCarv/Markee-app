@@ -1,13 +1,14 @@
 import { AddFileButton } from 'components/ui/addFileButton'
-import styled, { css } from 'styled-components/macro'
-
+import { Files } from './components/files'
 import MarkeeLogo from '../../assets/logo192.png'
 
-function SideBar() {
+import styled, { css } from 'styled-components/macro'
+
+function SideBar () {
   return (
     <NavBar>
       <LogoContainer>
-        <LogoImage src={MarkeeLogo} alt="Markee Logo" width={40} height={50} />
+        <LogoImage src={MarkeeLogo} alt='Markee Logo' width={40} height={50} />
         <Title>
           markee<span>.</span>
         </Title>
@@ -15,6 +16,7 @@ function SideBar() {
       <Container>
         <SectionName>Arquivos</SectionName>
         <AddFileButton />
+        <Files />
       </Container>
     </NavBar>
   )
@@ -23,7 +25,7 @@ function SideBar() {
 const NavBar = styled.nav`
   ${({ theme }) => css`
     background-color: ${theme.colors.black};
-    width: 332px;
+    
     height: inherit;
 
     display: flex;
