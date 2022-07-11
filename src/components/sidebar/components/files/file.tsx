@@ -1,32 +1,30 @@
-import styled from 'styled-components/macro'
 import { ReactComponent as InactiveFile } from '../../../../assets/inactiveFile.svg'
 import { ReactComponent as ActiveFile } from '../../../../assets/activeFile.svg'
 import { FileType } from 'resources/files'
+import { StatusIcon } from 'components/ui/statusicon'
 
-function File(props: Partial<FileType>) {
-  /*   const ButtonContent = () => {
-    switch (props.status) {
-      case 'editing':
-        return <div>Teste editando</div>
+import styled from 'styled-components/macro'
 
-      case 'saving':
-        return <div>Saving</div>
-
-      case 'saved':
-        return <div>saved</div>
-
-      default:
-        return <div>Close btn</div>
-    }
-  }
- */
+function File(props: FileType) {
   return (
-    <Container>
+    <FileWrapper>
       {props.active ? <ActiveFile /> : <InactiveFile />}
-      <FileTitle>{props.name}</FileTitle>
-      <Button>{/* {ButtonContent()} */}</Button>
-      <RemoveButton> + </RemoveButton>
-    </Container>
+      <FileTitle href={`/file/${props.id}`}>{props.name}</FileTitle>
+      {props.active && (
+        <StatusIcon
+          status={props.status}
+          className={
+            props.status === 'saving' ? 'absolute--saving' : 'absolute'
+          }
+        />
+      )}
+      {!props.active && (
+        <RemoveButton title={`Remover o arquivo ${props.name}`}>
+          {' '}
+          +{' '}
+        </RemoveButton>
+      )}
+    </FileWrapper>
   )
 }
 
@@ -42,10 +40,10 @@ const RemoveButton = styled(Button)`
   transform: translateY(-50%) rotate(45deg);
   font-size: 24px;
   color: ${({ theme }) => theme.colors.white};
-  z-index: 1  ;
+  z-index: 1;
 `
 
-const Container = styled.div`
+const FileWrapper = styled.div`
   cursor: pointer;
   margin-block: 12px;
 
@@ -66,6 +64,20 @@ const Container = styled.div`
       display: block;
     }
   }
+
+  & .absolute {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &--saving {
+      position: absolute;
+      right: 18px;
+      top: unset;
+      transform: translateY(-50%);
+    }
+  }
 `
 
 const FileTitle = styled.a`
@@ -74,6 +86,7 @@ const FileTitle = styled.a`
   height: 25px;
   display: flex;
   align-items: center;
+  text-decoration: none;
 `
 
 export { File }

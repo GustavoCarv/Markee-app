@@ -3,7 +3,6 @@ import styled from 'styled-components/macro'
 import { SideBar } from 'components/sidebar/sideBar'
 import { Textarea } from 'components/textarea'
 
-
 function App () {
   return (
     <MainContainer>

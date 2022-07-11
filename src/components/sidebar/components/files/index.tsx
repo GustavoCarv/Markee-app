@@ -1,3 +1,3 @@
-import { Files } from './files'
+import { FileList } from './fileList'
 
-export { Files }
+export { FileList }

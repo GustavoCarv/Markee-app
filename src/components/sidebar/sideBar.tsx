@@ -1,22 +1,22 @@
 import { AddFileButton } from 'components/ui/addFileButton'
-import { Files } from './components/files'
+import { FileList } from './components/files'
 import MarkeeLogo from '../../assets/logo192.png'
 
 import styled, { css } from 'styled-components/macro'
 
-function SideBar() {
+function SideBar () {
   return (
     <Aside>
       <LogoContainer>
-        <LogoImage src={MarkeeLogo} alt="Markee Logo" width={40} height={50} />
-        <Title> 
+        <LogoImage src={MarkeeLogo} alt='Markee Logo' width={40} height={50} />
+        <Title>
           markee<span>.</span>
         </Title>
       </LogoContainer>
       <Container>
         <SectionName>Arquivos</SectionName>
         <AddFileButton />
-        <Files />
+        <FileList />
       </Container>
     </Aside>
   )

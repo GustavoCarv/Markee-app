@@ -2,23 +2,23 @@ import { ReactComponent as ActiveFile } from '../../assets/activeFile.svg'
 
 import styled from 'styled-components/macro'
 
-function Textarea() {
+function Textarea () {
   return (
-    <Container>
-      <TitleContainer>
+    <TextareaWrapper>
+      <TitleWrapper>
         <ActiveFile />
-        <input placeholder="Sem título" />
-      </TitleContainer>
-      <TextContainer placeholder="Insert the text here..." />
-      <MarkdownContainer>Teste</MarkdownContainer>
-    </Container>
+        <input placeholder='Sem título' />
+      </TitleWrapper>
+      <Text placeholder='Insert the text here...' />
+      <Article>Teste</Article>
+    </TextareaWrapper>
   )
 }
 
 const containerMargin = '25px'
 const elementsMarginTop = '42px'
 
-const Container = styled.div`
+const TextareaWrapper = styled.div`
   width: 100%;
 
   display: flex;
@@ -26,7 +26,7 @@ const Container = styled.div`
   margin-block: ${containerMargin};
 `
 
-const TitleContainer = styled.div`
+const TitleWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-left: 24px;
@@ -48,7 +48,7 @@ const TitleContainer = styled.div`
   }
 `
 
-const TextContainer = styled.textarea`
+const Text = styled.textarea`
   border: none;
   border-right: 2px rgba(30, 41, 59, 0.12) solid;
   padding-left: 26px;
@@ -71,7 +71,7 @@ const TextContainer = styled.textarea`
   }
 `
 
-const MarkdownContainer = styled.div`
+const Article = styled.article`
   box-sizing: border-box;
   width: 50%;
   height: calc(100vh - (2 * ${containerMargin} + ${elementsMarginTop}));
