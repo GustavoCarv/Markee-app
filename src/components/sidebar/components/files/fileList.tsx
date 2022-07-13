@@ -2,9 +2,9 @@
 import { File } from './file'
 import { FileType } from '../../../../resources/files'
 
-function FileList() {
+function FileList () {
   /*   const [isActive, SetIsActive] = useState(false) */
-  let files: FileType[] = [
+  const files: FileType[] = [
     {
       id: '0',
       name: 'README.md',
@@ -21,7 +21,7 @@ function FileList() {
     },
   ]
 
-  const handleActiveType = (id: string) => {
+  /*   const handleActiveType = (id: string) => {
     const newFiles: FileType[] = [...files]
     newFiles.forEach((item) => {
       if (item.id === id) {
@@ -31,7 +31,7 @@ function FileList() {
       }
     })
     files = newFiles
-  }
+  } */
 
   const Content = files.map((item) => {
     return (
@@ -41,7 +41,7 @@ function FileList() {
         name={item.name}
         active={item.active}
         status={item.status}
-        content={item.content}        
+        content={item.content}
       />
     )
   })

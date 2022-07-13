@@ -5,7 +5,7 @@ import { StatusIcon } from 'components/ui/statusicon'
 
 import styled from 'styled-components/macro'
 
-function File(props: FileType) {
+function File (props: FileType) {
   return (
     <FileWrapper>
       {props.active ? <ActiveFile /> : <InactiveFile />}

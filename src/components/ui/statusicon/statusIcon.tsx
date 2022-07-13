@@ -10,7 +10,7 @@ export type StatusIconProps = {
   className?: string
 }
 
-function StatusIcon({ status = 'saved', className }: StatusIconProps) {
+function StatusIcon ({ status = 'saved', className }: StatusIconProps) {
   const Comp = {
     saving: AnimatedLoading,
     saved: CheckedSVG,
@@ -30,6 +30,6 @@ const rotating = keyframes`
 
 const AnimatedLoading = styled(LoadingSVG)`
     animation: ${rotating} 1s infinite linear ;
-` 
+`
 
 export { StatusIcon }

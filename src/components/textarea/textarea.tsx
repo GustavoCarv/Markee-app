@@ -1,16 +1,42 @@
 import { ReactComponent as ActiveFile } from '../../assets/activeFile.svg'
+import { useState, ChangeEvent } from 'react'
+import { marked } from 'marked'
 
+import 'highlight.js/styles/github.css'
 import styled from 'styled-components/macro'
 
-function Textarea () {
+import('highlight.js').then((highlight) => {
+  const asyncHighlight = highlight.default
+  marked.setOptions({
+    highlight: (code, language) => {
+      if (language && asyncHighlight.getLanguage(language)) {
+        return asyncHighlight.highlight(code, { language }).value
+      }
+
+      return asyncHighlight.highlightAuto(code).value
+    },
+  })
+}) // Assim a importação é asíncrona e não afeta o código no carregamento, já que não é necessário estar no onload
+
+// highlight.highlightAll() --> Procura em todo o código para aplicar o highlight
+
+//Específico para o texto do marked
+
+function Textarea() {
+  const [content, setContent] = useState('')
+
+  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setContent(marked.parse(e.target.value))
+  }
+
   return (
     <TextareaWrapper>
       <TitleWrapper>
         <ActiveFile />
-        <input placeholder='Sem título' />
+        <input placeholder="Sem título" />
       </TitleWrapper>
-      <Text placeholder='Insert the text here...' />
-      <Article>Teste</Article>
+      <Text onChange={handleChange} placeholder="Insert the text here..." />
+      <Article dangerouslySetInnerHTML={{ __html: content }} />
     </TextareaWrapper>
   )
 }
