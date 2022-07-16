@@ -1,17 +1,25 @@
-import styled, { css } from 'styled-components/macro'
+import styled from 'styled-components/macro'
 
+import { SideBar } from 'components/sidebar/sideBar'
+import { Textarea } from 'components/textarea'
 
-function App() {
-  return <Title>Oi</Title>
+function App () {
+  return (
+    <MainContainer>
+      <SideBar />
+      <Textarea />
+    </MainContainer>
+  )
 }
 
-const Title = styled.h1`
-  ${({ theme }) => css`
-    background: ${theme.colors.primary};
-    font-size: 2rem;
-    color: ${theme.colors.black};
-  `}
-`
+const MainContainer = styled.main`
+  width: 100%;
+  min-height: 100vh;
+  max-height:100vh ;
+  display: grid;
+  grid-template-columns: 332px 1fr;
 
+  overflow: hidden ;
+`
 
 export { App }

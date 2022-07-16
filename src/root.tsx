@@ -2,12 +2,12 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { theme } from 'resources/theme'
 import { App } from './app'
 
-import "normalize.css"
+import 'normalize.css'
 
-function Root() {
+function Root () {
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyle />     
+      <GlobalStyle />
       <App />
     </ThemeProvider>
   )
@@ -20,6 +20,10 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: "DM Sans", sans-serif ;
+  }
+
+  button {
+    all: unset;
   }
 `
 
