@@ -20,9 +20,9 @@ import('highlight.js').then((highlight) => {
 
 // highlight.highlightAll() --> Procura em todo o código para aplicar o highlight
 
-//Específico para o texto do marked
+// Específico para o texto do marked
 
-function Textarea() {
+function Textarea () {
   const [content, setContent] = useState('')
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -33,9 +33,9 @@ function Textarea() {
     <TextareaWrapper>
       <TitleWrapper>
         <ActiveFile />
-        <input placeholder="Sem título" />
+        <input placeholder='Sem título' />
       </TitleWrapper>
-      <Text onChange={handleChange} placeholder="Insert the text here..." />
+      <Text onChange={handleChange} placeholder='Insert the text here...' />
       <Article dangerouslySetInnerHTML={{ __html: content }} />
     </TextareaWrapper>
   )
