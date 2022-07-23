@@ -1,9 +1,10 @@
 import { ReactComponent as ActiveFile } from '../../assets/activeFile.svg'
-import { useState, ChangeEvent } from 'react'
+import { useState, ChangeEvent, RefObject } from 'react'
 import { marked } from 'marked'
 
 import 'highlight.js/styles/github.css'
 import styled from 'styled-components/macro'
+import { FileType } from 'resources/files'
 
 import('highlight.js').then((highlight) => {
   const asyncHighlight = highlight.default
@@ -22,20 +23,49 @@ import('highlight.js').then((highlight) => {
 
 // Específico para o texto do marked
 
-function Textarea () {
+type TextareaProps = {
+  onUpdateFileName: (id: string, e: ChangeEvent<HTMLInputElement>) => void
+  onUpdateFileContent: (id: string, e: ChangeEvent<HTMLTextAreaElement>) => void
+  file: FileType | undefined
+  inputRef: RefObject<HTMLInputElement>
+}
+
+function Textarea({
+  onUpdateFileName,
+  onUpdateFileContent,
+  file,
+  inputRef,
+}: TextareaProps) {
   const [content, setContent] = useState('')
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setContent(marked.parse(e.target.value))
   }
 
+  if (!file) {
+    return null
+  }
+
   return (
     <TextareaWrapper>
       <TitleWrapper>
         <ActiveFile />
-        <input placeholder='Sem título' />
+        <input
+          placeholder="Sem título"
+          ref={inputRef}
+          onChange={(e) => {
+            onUpdateFileName(file.id, e)
+          }}
+          autoFocus
+        />
       </TitleWrapper>
-      <Text onChange={handleChange} placeholder='Insert the text here...' />
+      <Text
+        onChange={(e) => {
+          handleChange(e)
+          onUpdateFileContent(file.id, e)
+        }}
+        placeholder="Insert the text here..."
+      />
       <Article dangerouslySetInnerHTML={{ __html: content }} />
     </TextareaWrapper>
   )

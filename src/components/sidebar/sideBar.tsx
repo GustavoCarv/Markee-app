@@ -3,20 +3,39 @@ import { FileList } from './components/files'
 import MarkeeLogo from '../../assets/logo192.png'
 
 import styled, { css } from 'styled-components/macro'
+import { FileType } from 'resources/files'
+import React, { RefObject } from 'react'
 
-function SideBar () {
+type SidebarProps = {
+  files: FileType[]
+  createNewFile: () => void
+  handleActiveType: (id: string) => void
+  removeFile: (id: string, e: React.MouseEvent) => void,
+  inputRef: RefObject<HTMLInputElement>
+}
+
+function SideBar({
+  files,
+  handleActiveType,
+  removeFile,
+  createNewFile,
+}: SidebarProps) {
   return (
     <Aside>
       <LogoContainer>
-        <LogoImage src={MarkeeLogo} alt='Markee Logo' width={40} height={50} />
+        <LogoImage src={MarkeeLogo} alt="Markee Logo" width={40} height={50} />
         <Title>
           markee<span>.</span>
         </Title>
       </LogoContainer>
       <Container>
         <SectionName>Arquivos</SectionName>
-        <AddFileButton />
-        <FileList />
+        <AddFileButton createNewFile={createNewFile} />
+        <FileList
+          files={files}
+          handleActiveType={handleActiveType}
+          removeFile={removeFile}
+        />
       </Container>
     </Aside>
   )

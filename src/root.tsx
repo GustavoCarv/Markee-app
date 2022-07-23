@@ -1,6 +1,6 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { theme } from 'resources/theme'
-import { App } from './app'
+import { App } from './App'
 
 import 'normalize.css'
 

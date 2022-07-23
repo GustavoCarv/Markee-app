@@ -5,9 +5,13 @@ import { StatusIcon } from 'components/ui/statusicon'
 
 import styled from 'styled-components/macro'
 
-function File (props: FileType) {
+function File(props: any) {
   return (
-    <FileWrapper>
+    <FileWrapper
+      onClick={(e) => {
+        props.handleActiveType(props.id)
+      }}
+    >
       {props.active ? <ActiveFile /> : <InactiveFile />}
       <FileTitle href={`/file/${props.id}`}>{props.name}</FileTitle>
       {props.active && (
@@ -19,7 +23,12 @@ function File (props: FileType) {
         />
       )}
       {!props.active && (
-        <RemoveButton title={`Remover o arquivo ${props.name}`}>
+        <RemoveButton
+          onClick={(e) => {
+            props.removeFile(props.id, e)
+          }}
+          title={`Remover o arquivo ${props.name}`}
+        >
           {' '}
           +{' '}
         </RemoveButton>
@@ -40,7 +49,7 @@ const RemoveButton = styled(Button)`
   transform: translateY(-50%) rotate(45deg);
   font-size: 24px;
   color: ${({ theme }) => theme.colors.white};
-  z-index: 1;
+  z-index: 5;
 `
 
 const FileWrapper = styled.div`
