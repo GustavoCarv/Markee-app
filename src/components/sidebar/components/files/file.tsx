@@ -1,15 +1,15 @@
 import { ReactComponent as InactiveFile } from '../../../../assets/inactiveFile.svg'
 import { ReactComponent as ActiveFile } from '../../../../assets/activeFile.svg'
-import { FileType } from 'resources/files'
 import { StatusIcon } from 'components/ui/statusicon'
 
 import styled from 'styled-components/macro'
+import React from 'react'
 
-function File(props: any) {
+function File (props: any) {
   return (
     <FileWrapper
-      onClick={(e) => {
-        props.handleActiveType(props.id)
+      onClick={(e:React.MouseEvent) => {
+        props.handleActiveType(props.id, e)
       }}
     >
       {props.active ? <ActiveFile /> : <InactiveFile />}

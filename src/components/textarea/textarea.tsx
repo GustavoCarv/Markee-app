@@ -1,5 +1,5 @@
 import { ReactComponent as ActiveFile } from '../../assets/activeFile.svg'
-import { useState, ChangeEvent, RefObject } from 'react'
+import {  ChangeEvent, RefObject } from 'react'
 import { marked } from 'marked'
 
 import 'highlight.js/styles/github.css'
@@ -30,17 +30,13 @@ type TextareaProps = {
   inputRef: RefObject<HTMLInputElement>
 }
 
-function Textarea({
+function Textarea ({
   onUpdateFileName,
   onUpdateFileContent,
   file,
   inputRef,
 }: TextareaProps) {
-  const [content, setContent] = useState('')
 
-  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(marked.parse(e.target.value))
-  }
 
   if (!file) {
     return null
@@ -51,8 +47,9 @@ function Textarea({
       <TitleWrapper>
         <ActiveFile />
         <input
-          placeholder="Sem título"
+          placeholder='Sem título'
           ref={inputRef}
+          value={file.name}
           onChange={(e) => {
             onUpdateFileName(file.id, e)
           }}
@@ -61,12 +58,12 @@ function Textarea({
       </TitleWrapper>
       <Text
         onChange={(e) => {
-          handleChange(e)
           onUpdateFileContent(file.id, e)
         }}
-        placeholder="Insert the text here..."
+        placeholder='Insert the text here...'
+        value={file.content}
       />
-      <Article dangerouslySetInnerHTML={{ __html: content }} />
+      <Article dangerouslySetInnerHTML={{ __html: marked.parse(file.content) }} />
     </TextareaWrapper>
   )
 }

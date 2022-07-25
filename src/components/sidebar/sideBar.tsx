@@ -9,9 +9,8 @@ import React, { RefObject } from 'react'
 type SidebarProps = {
   files: FileType[]
   createNewFile: () => void
-  handleActiveType: (id: string) => void
-  removeFile: (id: string, e: React.MouseEvent) => void,
-  inputRef: RefObject<HTMLInputElement>
+  handleActiveType: (id: string, e: React.MouseEvent) => void
+  removeFile: (id: string, e: React.MouseEvent) => void
 }
 
 function SideBar({

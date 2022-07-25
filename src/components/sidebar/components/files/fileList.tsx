@@ -1,10 +1,9 @@
-import React from 'react'
 import { FileType } from 'resources/files'
 import { File } from './file'
 
 type FileListProps = {
   files: FileType[]
-  handleActiveType: (id:string) => void
+  handleActiveType: (id: string, e: React.MouseEvent) => void
   removeFile: (id: string, e: React.MouseEvent) => void
 }
 
@@ -24,11 +23,7 @@ function FileList({ files, handleActiveType, removeFile }: FileListProps) {
     )
   })
 
-  return (
-    <>
-      {Content}
-    </>
-  )
+  return <>{Content}</>
 }
 
 export { FileList }
