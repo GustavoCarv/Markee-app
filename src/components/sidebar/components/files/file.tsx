@@ -1,25 +1,43 @@
 import { ReactComponent as InactiveFile } from '../../../../assets/inactiveFile.svg'
 import { ReactComponent as ActiveFile } from '../../../../assets/activeFile.svg'
-import { FileType } from 'resources/files'
 import { StatusIcon } from 'components/ui/statusicon'
 
 import styled from 'styled-components/macro'
+import React from 'react'
+import { FileType } from 'resources/files'
 
-function File (props: FileType) {
+type FileProps = {
+  item: FileType
+  removeFile: (id: string, e: React.MouseEvent) => void
+  handleActiveType: (id: string, e: React.MouseEvent) => void,
+  
+}
+
+function File(props: FileProps) {
   return (
-    <FileWrapper>
-      {props.active ? <ActiveFile /> : <InactiveFile />}
-      <FileTitle href={`/file/${props.id}`}>{props.name}</FileTitle>
-      {props.active && (
+    <FileWrapper
+      key={props.item.id}
+      onClick={(e: React.MouseEvent) => {
+        props.handleActiveType(props.item.id, e)
+      }}
+    >
+      {props.item.active ? <ActiveFile /> : <InactiveFile />}
+      <FileTitle href={`/file/${props.item.id}`}>{props.item.name}</FileTitle>
+      {props.item.active && (
         <StatusIcon
-          status={props.status}
+          status={props.item.status}
           className={
-            props.status === 'saving' ? 'absolute--saving' : 'absolute'
+            props.item.status === 'saving' ? 'absolute--saving' : 'absolute'
           }
         />
       )}
-      {!props.active && (
-        <RemoveButton title={`Remover o arquivo ${props.name}`}>
+      {!props.item.active && (
+        <RemoveButton
+          onClick={(e) => {
+            props.removeFile(props.item.id, e)
+          }}
+          title={`Remover o arquivo ${props.item.name}`}
+        >
           {' '}
           +{' '}
         </RemoveButton>
@@ -40,7 +58,7 @@ const RemoveButton = styled(Button)`
   transform: translateY(-50%) rotate(45deg);
   font-size: 24px;
   color: ${({ theme }) => theme.colors.white};
-  z-index: 1;
+  z-index: 5;
 `
 
 const FileWrapper = styled.div`

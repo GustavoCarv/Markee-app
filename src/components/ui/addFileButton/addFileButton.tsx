@@ -1,8 +1,17 @@
+import React from 'react'
 import styled, { css } from 'styled-components/macro'
 
-function AddFileButton () {
+type ButtonProps = {
+  createNewFile: (event: React.MouseEvent) => void
+}
+
+function AddFileButton ({ createNewFile }: ButtonProps) {
   return (
-    <Button>
+    <Button
+      onClick={(event) => {
+        createNewFile(event)
+      }}
+    >
       <svg
         width='10'
         height='10'

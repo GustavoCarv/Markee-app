@@ -3,8 +3,22 @@ import { FileList } from './components/files'
 import MarkeeLogo from '../../assets/logo192.png'
 
 import styled, { css } from 'styled-components/macro'
+import { FileType } from 'resources/files'
+import React from 'react'
 
-function SideBar () {
+type SidebarProps = {
+  files: FileType[]
+  createNewFile: () => void
+  handleActiveType: (id: string, e: React.MouseEvent) => void
+  removeFile: (id: string, e: React.MouseEvent) => void
+}
+
+function SideBar ({
+  files,
+  handleActiveType,
+  removeFile,
+  createNewFile,
+}: SidebarProps) {
   return (
     <Aside>
       <LogoContainer>
@@ -15,8 +29,12 @@ function SideBar () {
       </LogoContainer>
       <Container>
         <SectionName>Arquivos</SectionName>
-        <AddFileButton />
-        <FileList />
+        <AddFileButton createNewFile={createNewFile} />
+        <FileList
+          files={files}
+          handleActiveType={handleActiveType}
+          removeFile={removeFile}
+        />
       </Container>
     </Aside>
   )
