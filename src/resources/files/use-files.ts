@@ -1,13 +1,7 @@
 import { FileType } from 'resources/files'
 
 import localforage from 'localforage'
-import React, {
-  ChangeEvent,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from 'react'
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 
 function useFiles() {
@@ -15,6 +9,7 @@ function useFiles() {
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
+    console.log(files)
     let timer: ReturnType<typeof setTimeout>
 
     const updateStatus = () => {
@@ -29,7 +24,7 @@ function useFiles() {
               return { ...item, status: 'saving' as const }
             }
 
-            return file
+            return item
           }),
         )
 
@@ -40,7 +35,7 @@ function useFiles() {
                 return { ...item, status: 'saved' as const }
               }
 
-              return file
+              return item
             }),
           )
         }, 300)
@@ -51,16 +46,17 @@ function useFiles() {
     return () => clearTimeout(timer)
   }, [files])
 
-  //separação de useEffects por necessidade de uso
+  // separação de useEffects por necessidade de uso
   useEffect(() => {
     const setStorageFiles = async () => {
+      console.log('salvaram-se as files')
       await localforage.setItem('files', files)
     }
 
     setStorageFiles()
   }, [files])
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const getStorageFiles = async () => {
       const savedFiles = (await localforage.getItem('files')) as FileType[]
       if (savedFiles.length > 0) {
@@ -72,6 +68,16 @@ function useFiles() {
 
     getStorageFiles()
   }, [])
+
+  useEffect(() => {        
+    const selectedFiles = files.find(file => file.active === true)
+    if(selectedFiles) {
+      window.history.replaceState(null, "", `/file/${selectedFiles.id}`)
+    }
+    
+
+  }, [files])
+  
 
   const createNewFile = () => {
     inputRef?.current?.focus()
@@ -97,24 +103,26 @@ function useFiles() {
 
   const removeFile = (id: string, e: React.MouseEvent) => {
     e.stopPropagation()
-    const newFiles = [...files]
-    const finalFiles = newFiles.filter((file) => {
-      return file.id !== id
-    })
-    setFiles(finalFiles)
+
+    setFiles(
+      files.filter((file) => {
+        return file.id !== id
+      }),
+    )
   }
 
   const handleActiveType = (id: string, e: React.MouseEvent) => {
     e.preventDefault()
-    const newFiles: FileType[] = [...files]
-    newFiles.forEach((item) => {
-      if (item.id === id) {
-        item.active = true
-      } else {
-        item.active = false
-      }
-    })
-    setFiles(newFiles)
+
+    setFiles(
+      files.map((item) => {
+        if (item.id === id) {
+          return { ...item, active: true }
+        } else {
+          return { ...item, active: false }
+        }
+      }),
+    )
   }
 
   const handleUpdateName = (id: string, e: ChangeEvent<HTMLInputElement>) => {

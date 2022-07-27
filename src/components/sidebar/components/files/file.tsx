@@ -4,30 +4,39 @@ import { StatusIcon } from 'components/ui/statusicon'
 
 import styled from 'styled-components/macro'
 import React from 'react'
+import { FileType } from 'resources/files'
 
-function File (props: any) {
+type FileProps = {
+  item: FileType
+  removeFile: (id: string, e: React.MouseEvent) => void
+  handleActiveType: (id: string, e: React.MouseEvent) => void,
+  
+}
+
+function File(props: FileProps) {
   return (
     <FileWrapper
-      onClick={(e:React.MouseEvent) => {
-        props.handleActiveType(props.id, e)
+      key={props.item.id}
+      onClick={(e: React.MouseEvent) => {
+        props.handleActiveType(props.item.id, e)
       }}
     >
-      {props.active ? <ActiveFile /> : <InactiveFile />}
-      <FileTitle href={`/file/${props.id}`}>{props.name}</FileTitle>
-      {props.active && (
+      {props.item.active ? <ActiveFile /> : <InactiveFile />}
+      <FileTitle href={`/file/${props.item.id}`}>{props.item.name}</FileTitle>
+      {props.item.active && (
         <StatusIcon
-          status={props.status}
+          status={props.item.status}
           className={
-            props.status === 'saving' ? 'absolute--saving' : 'absolute'
+            props.item.status === 'saving' ? 'absolute--saving' : 'absolute'
           }
         />
       )}
-      {!props.active && (
+      {!props.item.active && (
         <RemoveButton
           onClick={(e) => {
-            props.removeFile(props.id, e)
+            props.removeFile(props.item.id, e)
           }}
-          title={`Remover o arquivo ${props.name}`}
+          title={`Remover o arquivo ${props.item.name}`}
         >
           {' '}
           +{' '}

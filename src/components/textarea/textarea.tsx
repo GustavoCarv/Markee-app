@@ -1,5 +1,5 @@
 import { ReactComponent as ActiveFile } from '../../assets/activeFile.svg'
-import {  ChangeEvent, RefObject } from 'react'
+import { ChangeEvent, RefObject } from 'react'
 import { marked } from 'marked'
 
 import 'highlight.js/styles/github.css'
@@ -36,8 +36,6 @@ function Textarea ({
   file,
   inputRef,
 }: TextareaProps) {
-
-
   if (!file) {
     return null
   }

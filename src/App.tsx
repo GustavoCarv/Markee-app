@@ -4,7 +4,7 @@ import { SideBar } from 'components/sidebar/sideBar'
 import { Textarea } from 'components/textarea'
 import { useFiles } from 'resources/files/use-files'
 
-function App() {
+function App () {
   const {
     files,
     inputRef,

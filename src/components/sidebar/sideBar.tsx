@@ -4,7 +4,7 @@ import MarkeeLogo from '../../assets/logo192.png'
 
 import styled, { css } from 'styled-components/macro'
 import { FileType } from 'resources/files'
-import React, { RefObject } from 'react'
+import React from 'react'
 
 type SidebarProps = {
   files: FileType[]
@@ -13,7 +13,7 @@ type SidebarProps = {
   removeFile: (id: string, e: React.MouseEvent) => void
 }
 
-function SideBar({
+function SideBar ({
   files,
   handleActiveType,
   removeFile,
@@ -22,7 +22,7 @@ function SideBar({
   return (
     <Aside>
       <LogoContainer>
-        <LogoImage src={MarkeeLogo} alt="Markee Logo" width={40} height={50} />
+        <LogoImage src={MarkeeLogo} alt='Markee Logo' width={40} height={50} />
         <Title>
           markee<span>.</span>
         </Title>
