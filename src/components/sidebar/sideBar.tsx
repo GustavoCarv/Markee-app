@@ -13,7 +13,7 @@ type SidebarProps = {
   removeFile: (id: string, e: React.MouseEvent) => void
 }
 
-function SideBar({
+function SideBar ({
   files,
   handleActiveType,
   removeFile,
@@ -24,7 +24,7 @@ function SideBar({
       <S.LogoContainer>
         <S.LogoImage
           src={MarkeeLogo}
-          alt="Markee Logo"
+          alt='Markee Logo'
           width={40}
           height={50}
         />

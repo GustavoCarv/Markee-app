@@ -46,6 +46,4 @@ function File (props: FileProps) {
   )
 }
 
-
-
 export { File }
