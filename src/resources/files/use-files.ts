@@ -4,7 +4,7 @@ import localforage from 'localforage'
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 
-function useFiles() {
+function useFiles () {
   const [files, setFiles] = useState<FileType[]>([])
   const inputRef = useRef<HTMLInputElement>(null)
 
