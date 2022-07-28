@@ -1,5 +1,6 @@
 import React from 'react'
-import styled, { css } from 'styled-components/macro'
+
+import { Button } from './addbutton-styles'
 
 type ButtonProps = {
   createNewFile: (event: React.MouseEvent) => void
@@ -38,28 +39,5 @@ function AddFileButton ({ createNewFile }: ButtonProps) {
     </Button>
   )
 }
-
-const Button = styled.button`
-  ${({ theme }) => css`
-    cursor: pointer;
-    margin-top: 25px;
-    margin-bottom: 32px;
-    width: 100%;
-    border-radius: 3.4px;
-    background-color: ${theme.colors.primary};
-    color: ${theme.colors.lightBlack};
-    padding-block: 0.5rem;
-    font-size: 13.5px;
-    line-height: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-
-    svg {
-      height: 17px;
-    }
-  `}
-`
 
 export { AddFileButton }

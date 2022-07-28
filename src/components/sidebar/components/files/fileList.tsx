@@ -8,7 +8,7 @@ type FileListProps = {
   removeFile: (id: string, e: React.MouseEvent) => void
 }
 
-function FileList({ files, handleActiveType, removeFile }: FileListProps) {
+function FileList ({ files, handleActiveType, removeFile }: FileListProps) {
   const Content = files.map((item) => {
     return (
       <File

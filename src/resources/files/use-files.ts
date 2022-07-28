@@ -4,7 +4,7 @@ import localforage from 'localforage'
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 
-function useFiles() {
+function useFiles () {
   const [files, setFiles] = useState<FileType[]>([])
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -69,15 +69,12 @@ function useFiles() {
     getStorageFiles()
   }, [])
 
-  useEffect(() => {        
+  useEffect(() => {
     const selectedFiles = files.find(file => file.active === true)
-    if(selectedFiles) {
-      window.history.replaceState(null, "", `/file/${selectedFiles.id}`)
+    if (selectedFiles) {
+      window.history.replaceState(null, '', `/file/${selectedFiles.id}`)
     }
-    
-
   }, [files])
-  
 
   const createNewFile = () => {
     inputRef?.current?.focus()
